@@ -50,6 +50,7 @@ function displayBook(item, index) {
 
 const newBookButton = document.getElementById("newBook")
 const newBookForm = document.querySelector("div.formWrapper")
+const formWrapperWrapper = document.querySelector("div.formWrapperWrapper")
 const closeFormButton = document.getElementById("closeForm")
 const submitButton = document.getElementById("submit")
 
@@ -59,10 +60,15 @@ submitButton.addEventListener('click', submitForm)
 
 function activateFormModal() {
     newBookForm.classList.remove('inactive')
+    formWrapperWrapper.classList.remove('inactive')
+    //e.preventDefault()
 }
 
-function closeFormModal() {
+function closeFormModal(e) {
     newBookForm.classList.add('inactive')
+    formWrapperWrapper.classList.add('inactive')
+    e.preventDefault()
+
 }
 
 let titleInput = document.querySelector("#title")
@@ -71,9 +77,10 @@ let pagesInput = document.querySelector("#pages")
 let readInput = document.querySelector("#read")
 
 
-function submitForm() {
+function submitForm(e) {
     addBookToLibrary(titleInput.value, authorInput.value, pagesInput.value, readInput.value)
     newBookForm.classList.add('inactive')
+
 }
 
 function removeBookFromLibrary(e) {

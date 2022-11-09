@@ -37,17 +37,25 @@ function displayBook(item, index) {
         let element = document.createElement("p");
         card.appendChild(element)
         element.textContent = item[e]
+
     })
     card.setAttribute('data-index', index)
+    let closeCardButton = document.createElement("button")
+    closeCardButton.setAttribute('card_id', index)
+    closeCardButton.addEventListener('click', removeBookFromLibrary)
+    card.appendChild(closeCardButton)
+    closeCardButton.textContent = "Remove"
     container.appendChild(card).className = "card";
 }
 
 const newBookButton = document.getElementById("newBook")
 const newBookForm = document.querySelector("div.formWrapper")
 const closeFormButton = document.getElementById("closeForm")
+const submitButton = document.getElementById("submit")
 
 newBookButton.addEventListener('click', activateFormModal)
 closeFormButton.addEventListener('click', closeFormModal)
+submitButton.addEventListener('click', submitForm)
 
 function activateFormModal() {
     newBookForm.classList.remove('inactive')
@@ -55,5 +63,22 @@ function activateFormModal() {
 
 function closeFormModal() {
     newBookForm.classList.add('inactive')
+}
 
+let titleInput = document.querySelector("#title")
+let authorInput = document.querySelector("#author")
+let pagesInput = document.querySelector("#pages")
+let readInput = document.querySelector("#read")
+
+
+function submitForm() {
+    addBookToLibrary(titleInput.value, authorInput.value, pagesInput.value, readInput.value)
+    newBookForm.classList.add('inactive')
+}
+
+function removeBookFromLibrary(e) {
+    let bookIndex = e.target.getAttribute("card_id")
+    myLibrary.splice(bookIndex, 1)
+    let card = e.target.parentNode
+    card.remove()
 }

@@ -2,6 +2,7 @@ body {
     text-align: center;
     display: flex;
     justify-content: center;
+    font-family: 'Roboto';
 }
 
 .container {
@@ -20,11 +21,15 @@ div.card {
 
 button {
     margin-top: 20px;
-    padding: 20px;
+    padding: 10px;
     border-radius: 10%;
     background-color: white;
     border: 1px solid black;
 
+}
+
+form button {
+    padding: 10px;
 }
 
 .formWrapper {
@@ -32,6 +37,7 @@ button {
     position: absolute;
     margin-top: 20vh;
     background-color: white;
+    padding: 30px;
 }
 
 .active {

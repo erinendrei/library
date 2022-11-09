@@ -25,6 +25,7 @@ function Book(title, author, pages, read) {
 function addBookToLibrary(title, author, pages, read) {
     let newBook = new Book(title, author, pages, read)
     myLibrary.push(newBook)
+    displayBook(newBook)
 }
 
 myLibrary.forEach(displayBook);
@@ -39,4 +40,20 @@ function displayBook(item, index) {
     })
     card.setAttribute('data-index', index)
     container.appendChild(card).className = "card";
+}
+
+const newBookButton = document.getElementById("newBook")
+const newBookForm = document.querySelector("div.formWrapper")
+const closeFormButton = document.getElementById("closeForm")
+
+newBookButton.addEventListener('click', activateFormModal)
+closeFormButton.addEventListener('click', closeFormModal)
+
+function activateFormModal() {
+    newBookForm.classList.remove('inactive')
+}
+
+function closeFormModal() {
+    newBookForm.classList.add('inactive')
+
 }
